@@ -5,7 +5,7 @@ import GuestLayout from "./components/GuestLayout";
 import Dashboard from "./views/Dashboard";
 import Login from "./views/Login";
 import NotFound from "./views/NotFound";
-import SignUp from "./views/SIgnup";
+import SignUp from "./views/SignUp";
 import Users from "./views/Users";
 
 const router = createBrowserRouter([
