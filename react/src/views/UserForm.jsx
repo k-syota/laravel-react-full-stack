@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom"
 import axiosClient from "../axios-client";
+import { useStateContext } from "../contexts/ContextProvider";
 
 export default function UserForm () {
   const {id} = useParams();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const {setNotification} = useStateContext();
   const [errors, setErrors] = useState(null);
   const [user, setUser] = useState({
     id:null,
@@ -34,7 +36,7 @@ export default function UserForm () {
     if(user.id){
       axiosClient.put(`/users/${user.id}`,user)
       .then(() => {
-        // Todo Notification
+        setNotification('User was successfully updated')
         navigate('/users');
       })
       .catch(err=>{
@@ -47,7 +49,7 @@ export default function UserForm () {
     }else{
       axiosClient.post('/users/',user)
       .then(() => {
-        // Todo Notification
+        setNotification('User was successfully created')
         navigate('/users');
       })
       .catch(err=>{

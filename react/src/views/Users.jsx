@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom'
 import axiosClient from '../axios-client';
+import { useStateContext } from "../contexts/ContextProvider";
 
 export default function Users(){
 
   const [users, setUsers] = useState([]);
+  const {setNotification} = useStateContext();
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -17,7 +19,7 @@ export default function Users(){
     }
     axiosClient.delete(`/users/${u.id}`)
     .then(()=>{
-      // TODO Notification
+      setNotification('User was successfully deleted')
       getUser();
     })
   }

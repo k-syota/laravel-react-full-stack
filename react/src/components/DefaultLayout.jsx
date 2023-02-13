@@ -5,7 +5,7 @@ import { useStateContext } from "../contexts/ContextProvider";
 
 export default function DefaultLayout(){
 
-  const {user, token, setUser, setToken} = useStateContext()
+  const {user, token, setUser, setToken, notification} = useStateContext()
 
   const onLogout = (e) => {
     e.preventDefault();
@@ -48,6 +48,11 @@ export default function DefaultLayout(){
             <Outlet />
           </main>
         </div>
+        {notification &&
+          <div className="notification">
+            {notification}
+          </div>
+        }
       </div>
   )
 }
